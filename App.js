@@ -1,117 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { useState } from 'react'
+import { View,Text, SafeAreaView,  } from 'react-native'
+import Game from './Components/Screens/Game/Index'
+import Home from './Components/Screens/Home/Index'
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+function App() {
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  const [inProgress, setInProgress]= useState(true);
+  const [popUp , setPopUp] = useState(false)
+  const [redPlayerName, setRedPlayerName] = useState()
+  const [yellowPlayerName, setYellowPlayerName] = useState()
+  const [greenPlayerName, setGreenPlayerName] = useState()
+  const [bluePlayerName, setBluePlayerName] = useState()
 
-/* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
- * LTI update could not be added via codemod */
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const onRedInput = (name)=> {
+    setRedPlayerName(name)
+  }
+  const onYellowInput = (name)=> {
+    setYellowPlayerName(name)
+  }
+  const onGreenInput = (name)=> {
+    setGreenPlayerName(name)
+  }
+  const onBlueInput = (name)=> {
+    setBluePlayerName(name)
+  }
+
+  const onStart = () => {
+    setInProgress(true)
+    setPopUp(false)
+  }
+
+  // setTimeout(() => {
+  //   setInProgress(true);
+  // }, 5000)
+// console.warn("hello world" , redPlayerName,yellowPlayerName,greenPlayerName,bluePlayerName)
+
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View>
+<SafeAreaView>      
+
+  {inProgress ? <Game /> : <Home 
+  popUp={popUp}
+  onNewGameButtonClick={() => {setPopUp(true)}}
+  onCanelButtonClick={() => {setPopUp(false)}}
+  redPlayerName={redPlayerName}
+  yellowPlayerName={yellowPlayerName}
+  greenPlayerName={greenPlayerName}
+  bluePlayerName={bluePlayerName}
+  onRedInput={onRedInput}
+  onYellowInput={onYellowInput}
+  onGreenInput={onGreenInput}
+  onBlueInput={onBlueInput}
+  onStart={onStart}
+  />}
+</SafeAreaView>
+
     </View>
-  );
-};
+  )
+}
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default App
