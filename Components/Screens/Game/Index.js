@@ -6,32 +6,32 @@ import { FOUR, ONE, RED, THREE, TWO } from '../../Utils/Constants'
 
 const Game = () => {
 
-  const { red, blue, yellow, green } = Colors;
-  console.log(red, blue, green,yellow);
+//   const { red, blue, yellow, green } = Colors;
+//   console.log(red, blue, green,yellow);
 
-//  const laalRang = () => initializePlayer(RED, red)
+//  var laalRang =  initializePlayer(RED,red)
 // console.warn("laalRang",laalRang);
 
-//   console.log("hello red state", redState);
- const initializePlayer = (playerType , Color) => {
-    console.warn("initializePlayer",playerType,Color)
-  return {
-  pieces : initializePieces(playerType),
-  Color:Color,
-  player: playerType 
-}
- }
+// //   console.log("hello red state", redState);
+//  const initializePlayer = async (playerType , Color) => {
+//     console.warn("initializePlayer",playerType,Color)
+//   return {
+//   pieces : initializePieces(playerType),
+//   Color:Color,
+//   player: playerType 
+// }
+//  }
 
- const initializePieces = (playerColor) => {
-    console.warn("initializePieces", playerColor);
-  return {
-    one: {name: ONE, color: playerColor},
-    two: { name:TWO , color: playerColor },
-    three: {name: THREE, color: playerColor},
-    four: {name: FOUR, color: playerColor}
-  }
- }
-// const setColors = () => {
+//  const initializePieces = (playerColor) => {
+//     console.warn("initializePieces", playerColor);
+//   return {
+//     one: {name: ONE, color: playerColor},
+//     two: { name:TWO , color: playerColor },
+//     three: {name: THREE, color: playerColor},
+//     four: {name: FOUR, color: playerColor}
+//   }
+//  }
+// // const setColors = () => {
 
 //  setYellowState((prev ) => {createTwoButtonAlert(RED,prev)})
 // }
@@ -42,6 +42,30 @@ const Game = () => {
 //   console.warn("function called", Player,Color)
 //     initializePlayer(Player,Color)
 //  }
+
+const { red, blue, yellow, green } = "ddd";
+  console.log(red, blue, green,yellow);
+
+  const initializePieces = (playerColor) => {
+    console.warn("initializePieces", playerColor);
+  return {
+    one: {name: "ONE", color: playerColor},
+    two: { name:"TWO" , color: playerColor },
+    three: {name: "THREE", color: playerColor},
+    four: {name: "FOUR", color: playerColor}
+  }
+ }
+  //   console.log("hello red state", redState);
+  const initializePlayer = async (playerType , Color) => {
+      console.warn("initializePlayer",playerType,Color)
+      return {
+          pieces : initializePieces(playerType),
+          Color:Color,
+          player: playerType 
+        }
+    }
+    var laalRang =  initializePlayer("RED",red)
+   console.log("laalRang",laalRang);
 
  const showPlayerBox = (Color) => {
     return <PlayerBox  Color={Color} />

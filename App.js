@@ -5,7 +5,7 @@ import Home from './Components/Screens/Home/Index'
 
 function App() {
 
-  const [inProgress, setInProgress]= useState(true);
+  const [inProgress, setInProgress]= useState(false);
   const [popUp , setPopUp] = useState(false)
   const [redPlayerName, setRedPlayerName] = useState()
   const [yellowPlayerName, setYellowPlayerName] = useState()

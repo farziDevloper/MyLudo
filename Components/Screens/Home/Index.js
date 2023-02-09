@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import NewGameModel from '../NewGameModel/NewGameModel'
+// import { usePreventScreenCapture } from 'expo-screen-capture';
 
 const Home = ({popUp, onNewGameButtonClick, onCanelButtonClick , onRedInput, onGreenInput,onBlueInput,onYellowInput, onStart,redPlayerName ,greenPlayerName,bluePlayerName,yellowPlayerName}) => {
 
-
+    // usePreventScreenCapture();
 
 
     const popup = popUp; // popUp coming from App to  Home using props and directly destructing it and getting it , we can also get it using props.pouUp;,,
