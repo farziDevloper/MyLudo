@@ -1,18 +1,16 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 
-const PlayerBox = ({Color}) => {
-  // console.log("Player box components", Color);
+const PlayerBox = Colors => {
+  let color = Colors.Colors._j.Colors;
+  console.warn('Player components', color);
   return (
-    <View style={{backgroundColor:Color, flex:1}}>
-   
-    </View>
-   
-  )
-}
-const styles = StyleSheet.create({
-    PlayerBox:{
+    <View
+      style={{
+        backgroundColor: color,
+        flex: 2,
+      }}></View>
+  );
+};
 
-    }
-})
-export default PlayerBox
+export default PlayerBox;
