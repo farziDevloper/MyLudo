@@ -16,6 +16,7 @@ import {
   YELLOW,
 } from '../../Utils/Constants';
 import {VerticalCellContainer} from '../../VerticalCellContainer/VerTicalCellContainer';
+import {HorizontalCellContainer} from '../../HorizontalCellContainer/HorizontalCellContainer';
 
 const Game = () => {
   const {red, blue, yellow, green} = Colors;
@@ -69,7 +70,8 @@ const Game = () => {
           {showPlayerBox(yellowPlayer)}
         </View>
 
-        <View style={styles.horizontalCellContainer}></View>
+        {/* <View style={styles.horizontalCellContainer}></View> */}
+        <HorizontalCellContainer />
         <View style={styles.twoPlayerContainer}>
           {showPlayerBox(bluePlayer)}
           <VerticalCellContainer position={BOTTOM_VERTICAL} />
