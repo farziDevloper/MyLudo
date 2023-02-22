@@ -4,14 +4,18 @@ import PlayerBox from './PlayerBox';
 import {Colors} from '../../Utils/Colors';
 import {
   BLUE,
+  BOTTOM_VERTICAL,
   FOUR,
   GREEN,
+  HOME,
   ONE,
   RED,
   THREE,
+  TOP_VERTICAL,
   TWO,
   YELLOW,
 } from '../../Utils/Constants';
+import {VerticalCellContainer} from '../../VerticalCellContainer/VerTicalCellContainer';
 
 const Game = () => {
   const {red, blue, yellow, green} = Colors;
@@ -27,16 +31,26 @@ const Game = () => {
 
   const initializePieces = playerColor => {
     return {
-      one: {name: ONE, color: playerColor},
-      two: {name: TWO, color: playerColor},
-      three: {name: THREE, color: playerColor},
-      four: {name: FOUR, color: playerColor},
+      one: {position: HOME, name: ONE, color: playerColor},
+      two: {position: HOME, name: TWO, color: playerColor},
+      three: {position: HOME, name: THREE, color: playerColor},
+      four: {position: HOME, name: FOUR, color: playerColor},
     };
   };
 
-  const showPlayerBox = player => {
-    console.warn('palyer Color is = > ', player._j.Colors);
-    return <PlayerBox Colors={player} />;
+  const showPlayerBox = (player, customStyle) => {
+    const {one, two, three, four} = player._j.pieces;
+    console.warn(one);
+    return (
+      <PlayerBox
+        colors={player}
+        one={one}
+        two={two}
+        three={three}
+        four={four}
+        customStyle={customStyle}
+      />
+    );
   };
   useState(() => {
     // createTwoButtonAlert()
@@ -46,20 +60,19 @@ const Game = () => {
   const bluePlayer = initializePlayer(BLUE, blue);
   const greenPlayer = initializePlayer(GREEN, green);
 
-  console.warn('red player ', redPlayer);
-  console.warn(yellowPlayer);
-
   return (
     <View style={styles.container}>
       <View style={styles.gameContainer}>
         <View style={styles.twoPlayerContainer}>
           {showPlayerBox(redPlayer)}
+          <VerticalCellContainer position={TOP_VERTICAL} />
           {showPlayerBox(yellowPlayer)}
         </View>
 
         <View style={styles.horizontalCellContainer}></View>
         <View style={styles.twoPlayerContainer}>
           {showPlayerBox(bluePlayer)}
+          <VerticalCellContainer position={BOTTOM_VERTICAL} />
           {showPlayerBox(greenPlayer)}
         </View>
       </View>
@@ -79,60 +92,19 @@ const styles = StyleSheet.create({
   gameContainer: {
     width: Dimensions.get('screen').width,
     height: Dimensions.get('screen').width,
-    borderWidth: 2,
     elevation: 5,
-    borderRadius: 10,
     backgroundColor: '#fff',
-    // borderColor:'red',
     alignSelf: 'center',
   },
   twoPlayerContainer: {
     flex: 3,
-    backgroundColor: '#ddd',
-    borderColor: 'black',
-    borderRadius: 20,
-    borderWidth: 2,
+    backgroundColor: '#fff',
     flexDirection: 'row',
   },
   horizontalCellContainer: {
     flex: 2,
-    backgroundColor: '#999',
+    backgroundColor: '#fff',
   },
 });
 
 export default Game; //   const { red, blue, yellow, green } = Colors;
-//   console.log(red, blue, green,yellow);
-
-//  var laalRang =  initializePlayer(RED,red)
-// console.warn("laalRang",laalRang);
-
-// //   console.log("hello red state", redState);
-//  const initializePlayer = async (playerType , Color) => {
-//     console.warn("initializePlayer",playerType,Color)
-//   return {
-//   pieces : initializePieces(playerType),
-//   Color:Color,
-//   player: playerType
-// }
-//  }
-
-//  const initializePieces = (playerColor) => {
-//     console.warn("initializePieces", playerColor);
-//   return {
-//     one: {name: ONE, color: playerColor},
-//     two: { name:TWO , color: playerColor },
-//     three: {name: THREE, color: playerColor},
-//     four: {name: FOUR, color: playerColor}
-//   }
-//  }
-// // const setColors = () => {
-
-//  setYellowState((prev ) => {createTwoButtonAlert(RED,prev)})
-// }
-
-// console.warn("yellow",yellowState);
-
-//  const createTwoButtonAlert = (Player, Color) =>{
-//   console.warn("function called", Player,Color)
-//     initializePlayer(Player,Color)
-//  }
