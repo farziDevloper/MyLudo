@@ -41,7 +41,7 @@ const Game = () => {
 
   const showPlayerBox = (player, customStyle) => {
     const {one, two, three, four} = player._j.pieces;
-    console.warn(one);
+    // console.warn(one);
     return (
       <PlayerBox
         colors={player}
