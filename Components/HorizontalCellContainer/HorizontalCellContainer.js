@@ -91,11 +91,14 @@ export const HorizontalCellContainer = () => {
       )}
     </View>
   );
-};
+      }
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 2,
+
     backgroundColor: Colors.white,
   },
   rowsContainer: {
@@ -106,5 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderColor: '#000',
     borderWidth: 1,
+
   },
-});
+})
+;
