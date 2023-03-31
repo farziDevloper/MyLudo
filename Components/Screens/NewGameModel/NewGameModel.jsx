@@ -1,15 +1,18 @@
 import React from 'react'
 import { Alert, Modal, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { isEmpty } from '../../../Utils/IsEmpty'
 
 const NewGameModel = (props) => {
-    // console.warn(props)
+    console.warn(props)
 
     const checkMinimumPlayers = () => {
         let minimumPlayers = 0;
-    props.redPlayerName != "" ? minimumPlayers++ : undefined;
-    props.greenPlayerName != "" ? minimumPlayers++ : undefined;
-    props.bluePlayerName != "" ? minimumPlayers++ : undefined;
-    props.yellowPlayerName != "" ? minimumPlayers++ : undefined;
+    {!isEmpty(props.redPlayerName) ?minimumPlayers++ : null};
+    {!isEmpty(props.greenPlayerName) ?minimumPlayers++ : null};
+    {!isEmpty(props.bluePlayerName) ?minimumPlayers++ : null};
+    {!isEmpty(props.yellowPlayerName) ?minimumPlayers++ : null};
+
+    console.warn( "========>",minimumPlayers );
         if(minimumPlayers >= 2 ){
             props.onStart()
         }
