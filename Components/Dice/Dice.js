@@ -1,8 +1,27 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import {Colors} from '../Utils/Colors';
+import {BLUE, GREEN, RED, YELLOW} from '../Utils/Constants';
 
 export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
+  const {red, yellow, green, blue} = Colors;
+  let color =
+    turn === RED
+      ? red
+      : turn === YELLOW
+      ? yellow
+      : turn === GREEN
+      ? green
+      : turn === BLUE
+      ? blue
+      : undefined;
+
   const renderDiceSurface = diceNumber => {
     switch (diceNumber) {
       case 1:
@@ -42,31 +61,26 @@ export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
   };
   const renderSurfaceFour = () => {
     return (
-      <View>
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
+      <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+        {renderSurfaceTwo()}
+        {renderSurfaceTwo()}
       </View>
     );
   };
   const renderSurfaceFive = () => {
     return (
-      <View>
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
+      <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+        {renderSurfaceTwo()}
+        {renderSurfaceOne()}
+        {renderSurfaceTwo()}
       </View>
     );
   };
   const renderSurfaceSix = () => {
     return (
-      <View>
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
-        <View style={styles.diceDot} />
+      <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+        {renderSurfaceThree()}
+        {renderSurfaceThree()}
       </View>
     );
   };
@@ -74,20 +88,20 @@ export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
   return (
     <View>
       <Text style={styles.textStyle}>Roll DIce</Text>
-      <View style={styles.container}>{renderDiceSurface(2)}</View>
+      <TouchableOpacity
+        style={[styles.container, {backgroundColor: color}]}
+        onPress={onDiceRoll}>
+        {renderDiceSurface(diceNumber)}
+      </TouchableOpacity>
+      {isRolling && (
+        <View style={styles.isRolling}>
+          <ActivityIndicator />
+        </View>
+      )}
     </View>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    marginTop: 30,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    width: 40,
-    height: 40,
-    backgroundColor: '#f00',
-  },
   textStyle: {
     position: 'absolute',
     alignSelf: 'center',
@@ -95,11 +109,22 @@ const styles = StyleSheet.create({
   },
   diceDot: {
     backgroundColor: Colors.white,
+    alignSelf: 'center',
     width: 6,
     height: 6,
-    alignSelf: 'center',
-    borderWidth: 3,
-    margin: 2,
+    padding: 2,
+    margin: 3,
+    marginBottom: 6,
+    marginRight: 6,
     borderRadius: 3,
+  },
+  container: {
+    position: 'absolute',
+    marginTop: 30,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: 50,
+    height: 50,
+    backgroundColor: '#f00',
   },
 });
