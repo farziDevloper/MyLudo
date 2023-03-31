@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../../Utils/Colors';
 const PlayerBox = ({colors, customStyle, one, two, three, four}) => {
@@ -63,5 +64,6 @@ const style = StyleSheet.create({
     borderColor: 'black',
   },
 });
+
 
 export default PlayerBox;

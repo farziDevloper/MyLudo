@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 import {Colors} from '../Utils/Colors';
 import {BLUE, GREEN, RED, YELLOW} from '../Utils/Constants';
-
+let color;
 export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
   const {red, yellow, green, blue} = Colors;
-  let color =
+   color =
     turn === RED
       ? red
       : turn === YELLOW
@@ -22,7 +22,11 @@ export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
       ? blue
       : undefined;
 
+
+
+      console.warn(color , "color < =====");
   const renderDiceSurface = diceNumber => {
+    console.warn("dice number === > ",diceNumber );
     switch (diceNumber) {
       case 1:
         return renderSurfaceOne();
@@ -87,11 +91,11 @@ export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
 
   return (
     <View>
-      <Text style={styles.textStyle}>Roll DIce</Text>
+      {/* <Text style={styles.textStyle}>Roll DIce</Text> */}
       <TouchableOpacity
         style={[styles.container, {backgroundColor: color}]}
         onPress={onDiceRoll}>
-        {renderDiceSurface(diceNumber)}
+        {renderDiceSurface(6)}
       </TouchableOpacity>
       {isRolling && (
         <View style={styles.isRolling}>
@@ -108,12 +112,12 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   diceDot: {
-    backgroundColor: Colors.white,
+    backgroundColor:Colors.black ,
     alignSelf: 'center',
-    width: 6,
-    height: 6,
-    padding: 2,
-    margin: 3,
+    width: 11,
+    height: 11,
+    padding: 5,
+    margin: 5,
     marginBottom: 6,
     marginRight: 6,
     borderRadius: 3,
