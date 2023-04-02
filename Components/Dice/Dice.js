@@ -24,7 +24,7 @@ export const Dice = ({isRolling, turn, onDiceRoll, diceNumber}) => {
 
 
 
-      // console.warn(color , "color < =====");
+  
   const renderDiceSurface = diceNumber => {
     console.warn("dice number === > ",diceNumber );
     switch (diceNumber) {
